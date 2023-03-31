@@ -1,0 +1,26 @@
+<h2>Add Post</h2>
+<form action="/posts/add" method="POST">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" class="form-control" id="title" name="title" autofocus>
+  </div>
+  <div class="form-group">
+    <label for="content">Content:</label>
+    <textarea class="form-control" id="content" name="
+    content" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="category">Category:</label>
+    {{#if categories}}
+      <select class="form-control" name="category" id="category">
+        <option value="">Select Category</option>
+        {{#each categories}}
+          <option value="{{id}}">{{category}}</option>
+        {{/each}}
+      </select>
+    {{else}}
+      <div>No Categories</div>
+    {{/if}}
+  </div>
+  <button type="submit" class="btn btn-primary">Add Post</button>
+</form>

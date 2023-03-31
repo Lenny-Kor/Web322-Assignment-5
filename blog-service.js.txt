@@ -1,0 +1,63 @@
+const posts = [];
+const categories = [];
+
+function getPosts() {
+  return Promise.resolve(posts);
+}
+
+function getCategories() {
+  return Promise.resolve(categories);
+}
+
+function addPost(postData) {
+  const post = {
+    id: Date.now(),
+    title: postData.title,
+    content: postData.content,
+    category: postData.category
+  };
+
+  posts.push(post);
+  return Promise.resolve();
+}
+
+function addCategory(categoryData) {
+  const category = {
+    id: Date.now(),
+    category: categoryData.category
+  };
+
+  categories.push(category);
+  return Promise.resolve();
+}
+
+function deleteCategoryById(id) {
+  const index = categories.findIndex(category => category.id === parseInt(id));
+
+  if (index !== -1) {
+    categories.splice(index, 1);
+    return Promise.resolve();
+  } else {
+    return Promise.reject(new Error('Category not found'));
+  }
+}
+
+function deletePostById(id) {
+  const index = posts.findIndex(post => post.id === parseInt(id));
+
+  if (index !== -1) {
+    posts.splice(index, 1);
+    return Promise.resolve();
+  } else {
+    return Promise.reject(new Error('Post not found'));
+  }
+}
+
+module.exports = {
+  getPosts,
+  getCategories,
+  addPost,
+  addCategory,
+  deleteCategoryById,
+  deletePostById
+};
